@@ -2,6 +2,7 @@ import { Link, useNavigate } from "react-router-dom"
 import { useState, useContext } from "react"
 import {login} from '../api/auth.api'
 import { AuthContext } from "../context/auth.context"
+import fullLogo from '../assets/img/logo+slogan.png';
 
 const Login = () => {
     const [email, setEmail] = useState("")
@@ -20,10 +21,9 @@ const Login = () => {
         try {
             // login response with the jwt token
           const response = await login (user)
-          /* console.log(response.data.authToken) */
           storeToken(response.data.authToken)
           authenticateUser()
-          navigate('/')
+          navigate('/Home')
         } catch (error) {
             console.log("error logging in", error)
             setError(error.response.data.message)
@@ -33,32 +33,34 @@ const Login = () => {
     return (
         <div>
 
-            <h1>Login</h1>
+        <div className="logo-container">
+            <img src={fullLogo} alt="fuel-logo" />
+        </div>
+
+        <div className="login-form">
 
             <form onSubmit={handleSubmit}>
 
-            <label>Email</label>
             <input
             type="email"
             name="email"
             value={email}
+            placeholder="email"
             onChange={({target}) => setEmail(target.value)} />
 
-            <label>Password</label>
             <input
             type="password"
             name="password"
             value={password}
+            placeholder="password"
             onChange={({target}) => setPassword(target.value)} />
 
-            <button type="submit">Login</button>
+            <Link to="/home" className="login-button" onClick={handleSubmit}>Log In</Link>
 
             </form>
 
             {error && <p>{error}</p>}
-
-            <p>Don't have an account yet?</p>
-             <Link to={'/signup'}>Signup</Link>
+        </div>
         </div>
     )
 }

@@ -11,7 +11,7 @@ const IsAnon = props => {
     }
 
     if (isLoggedIn) {
-        return <Navigate to={'/'} />
+        return <Navigate to={'/Home'} />
     } else {
         return props.children
     }

@@ -1,57 +1,62 @@
-import { useState } from "react";
-import "./App.css";
 import { Routes, Route } from "react-router-dom";
-import Navbar from "./components/Navbar";
-import Home from "./pages/Home";
-import ProjectsList from "./pages/ProjectsList";
-import CreateProject from "./pages/CreateProject";
-import ProjectDetails from "./pages/ProjectDetails";
-import EditProject from "./pages/EditProject";
-import { useContext } from 'react';
-import { ThemeContext } from './context/theme.context';
-import Signup from "./pages/Signup";
-import Login from "./pages/Login"
+import "../src/styles/App.css";
+import "../src/styles/homepage.css";
+import "../src/styles/login-page.css";
+
+// Components
+import Match from './components/Match'
 import IsPrivate from "./components/IsPrivate";
 import IsAnon from "./components/IsAnon";
+// Pages
+import Home from "./pages/Home";
+import Connect from './pages/Connect'
+import Signup from "./pages/Signup";
+import Login from "./pages/Login"
+import Main from './pages/Main'
+import Setup from './pages/Setup'
+import Profile from './pages/Profile'
+// Context
+import { useContext } from 'react';
+import { ThemeContext } from './context/theme.context';
+
 
 function App() {
   const { theme } = useContext(ThemeContext);
 
   return (
     <div className={`App ${theme}`}>
-      <Navbar />
 
       <Routes>
         <Route
           path="/"
-          element={<Home />}
+          element={<Main />}
         />
         <Route
-          path="/projects"
+          path="/connect"
           element={
           <IsPrivate>
-          <ProjectsList />
+          <Connect />
           </IsPrivate>}
         />
         <Route
-          path="/projects/create"
+          path="/home"
           element={
             <IsPrivate>
-          <CreateProject />
+          <Home />
           </IsPrivate>}
         />
         <Route
-          path="/projects/:projectId"
+          path="/profile/:userId"
           element={
           <IsPrivate>
-          <ProjectDetails />
+          <Profile />
           </IsPrivate>}
         />
         <Route
-          path="/projects/edit/:projectId"
+          path="/setup"
           element={
           <IsPrivate>
-          <EditProject />
+          <Setup />
           </IsPrivate>}
         />
         <Route

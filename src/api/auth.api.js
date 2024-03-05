@@ -1,5 +1,5 @@
 import axios from 'axios';
-const baseURL = `${import.meta.env.VITE_PROJECTS_API}/auth`;
+const baseURL = `${import.meta.env.VITE_RESTAURANTS_API}/auth`;
 
 export const signup = user => {
   return axios.post(`${baseURL}/signup`, user);

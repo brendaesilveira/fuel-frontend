@@ -1,12 +1,15 @@
 import { useContext } from "react";
 import { AuthContext } from "../context/auth.context";
+import Navbar from "../components/Navbar"
+import Menu from "../components/Menu"
 
 function Home() {
 const {user} = useContext(AuthContext)
 
   return (
-    <div>
-      <h1>{user && user.name + ','} Welcome to Project Manager</h1>
+    <div className="left-container">
+          <Navbar />
+          <Menu />
     </div>
   );
 }
