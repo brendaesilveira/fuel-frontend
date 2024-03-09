@@ -7,9 +7,18 @@ function Home() {
 const {user} = useContext(AuthContext)
 
   return (
+    <div>
+
     <div className="left-container">
           <Navbar />
           <Menu />
+    </div>
+
+    <div className="restaurant-container">
+
+
+    </div>
+
     </div>
   );
 }

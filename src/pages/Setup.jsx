@@ -1,9 +1,11 @@
-import React from 'react'
+import React from 'react';
 
 function Setup() {
   return (
-    <div>Setup</div>
-  )
+    <div>
+    <p>This is the setup page</p>
+    </div>
+  );
 }
 
-export default Setup
+export default Setup;

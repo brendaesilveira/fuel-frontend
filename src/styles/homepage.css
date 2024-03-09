@@ -6,6 +6,7 @@
 body {
   margin: 0;
   background-color: #fff6ea;
+  overflow-y: hidden;
 }
 
 /* ---------------------------------- LEFT CONTAINER -> NAV, MENU ---------------------------------- */

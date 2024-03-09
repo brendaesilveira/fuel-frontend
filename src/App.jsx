@@ -1,7 +1,11 @@
 import { Routes, Route } from "react-router-dom";
+
+// Styles
 import "../src/styles/App.css";
 import "../src/styles/homepage.css";
 import "../src/styles/login-page.css";
+import "../src/styles/mainpage.css";
+import "../src/styles/signup.css";
 
 // Components
 import Match from './components/Match'
