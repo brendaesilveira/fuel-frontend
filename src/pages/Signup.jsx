@@ -26,7 +26,7 @@ const Signup = () => {
     }
 
     return (
-        <div>
+        <div style={{ backgroundColor: '#fff6ea' }}>
 
         <div className="logo-container">
         <img src={fullLogo} alt="fuel-logo" />

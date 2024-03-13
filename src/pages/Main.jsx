@@ -3,7 +3,7 @@ import fullLogo from '../assets/img/logo+slogan.png';
 
 function Main() {
   return (
-    <div className="main-page">
+    <div className="main-page" style={{ backgroundColor: '#fff6ea' }}>
 
         <div className="logo-container">
             <img src={fullLogo} alt="fuel-logo" />

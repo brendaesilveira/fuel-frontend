@@ -1,8 +1,11 @@
-import React from 'react'
+import Settings from './Settings';
+
 
 function Menu() {
   return (
-    <div className='menu'></div>
+    <div className='menu'>
+          <Settings />
+    </div>
   )
 }
 

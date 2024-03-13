@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+
+.setup-container {
+    height: 100vh;
+    top: 0;
+    left: 50%;
+}
+.setup-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    top: 0;
+    left: 50%;
+}
+.upload-paragraphs {
+    display: flex;
+    justify-content: space-between;
+}
+.setup-text {
+    color: #ff3b01;
+    font-family: "Comfortaa", sans-serif;
+    margin: 0;
+}
+.optional {
+    font-family: "Lato", sans-serif;
+    font-style: italic;
+    font-size: 0.4rem;
+    color: grey;
+    margin: 0;
+}
+.select-location {
+    background-color: #efecec;
+    font-family: "Lato", sans-serif;
+    font-style: italic;
+    border: none;
+    color: grey;
+    width: 50%;
+}
+
+.logout {
+    width: 5%;
+    height: auto;
+    background-color: #ff3b01;
+}
+
+.logout img {
+    width: 5%;
+    height: auto;
+}
+.image-upload {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+/* .image-upload>input {
+    visibility:hidden;
+  } */
+
+.upload-icon {
+    width: 10%;
+    cursor: pointer;
+}

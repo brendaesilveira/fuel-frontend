@@ -7,7 +7,7 @@ function Home() {
 const {user} = useContext(AuthContext)
 
   return (
-    <div>
+    <div style={{ backgroundColor: '#fff6ea' }}>
 
     <div className="left-container">
           <Navbar />

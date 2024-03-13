@@ -1,5 +1,5 @@
 import axios from 'axios';
-const baseURL = `${import.meta.env.VITE_PROJECTS_API}/api`;
+const baseURL = `${import.meta.env.VITE_RESTAURANTS_API}/api`;
 
 const setAuthorizationHeaders = () => {
   axios.interceptors.request.use(config => {

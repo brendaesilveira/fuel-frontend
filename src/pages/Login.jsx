@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useState, useContext } from "react";
 import { login } from '../api/auth.api';
 import { AuthContext } from "../context/auth.context";
@@ -18,17 +18,15 @@ const Login = () => {
 
         try {
             const response = await login(user);
-/*             console.log(response)
-            console.log(response.data.setup_completed) - does not exist - response.data.authToken */
-
-            if (!response.data.setup_completed) {
-                navigate('/home');
-            } else {
-                navigate('/setup');
-            }
-
+            console.log(user)
             storeToken(response.data.authToken);
             authenticateUser();
+
+            if (user.setupCompleted) {
+                navigate('/setup');
+            } else {
+                navigate('/home');
+            }
 
 
         } catch (error) {
@@ -38,7 +36,7 @@ const Login = () => {
     };
 
     return (
-        <div>
+        <div style={{ backgroundColor: '#fff6ea' }}>
             <div className="logo-container">
                 <img src={fullLogo} alt="fuel-logo" />
             </div>
