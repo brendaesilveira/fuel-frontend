@@ -8,17 +8,12 @@ function Home() {
 const {user} = useContext(AuthContext)
 
   return (
-    <div style={{ backgroundColor: '#fff6ea' }}>
+    <div className="home-page">
+          <Restaurants />
 
     <div className="left-container">
           <Navbar />
           <Menu />
-          <Restaurants />
-    </div>
-
-    <div className="right-container">
-
-
     </div>
 
     </div>

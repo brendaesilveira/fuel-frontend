@@ -2,6 +2,9 @@ import React, { useState, useEffect, useContext } from 'react';
 import { allRestaurants } from "../api/restaurants.api";
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../context/auth.context';
+import RestBg from '../assets/img/restaurants-bg.png'
+import RightArrow from '../assets/img/arrow-right.png'
+import LeftArrow from '../assets/img/arrow-left.png'
 
 function Restaurants() {
   const { isLoggedIn, user } = useContext(AuthContext);
@@ -15,7 +18,7 @@ function Restaurants() {
       try {
         const response = await allRestaurants(user.location.city, currentPage);
         setRestaurants(response.data.restaurants);
-        setTotalPages(Math.ceil(response.data.totalCount / 1)); // Assuming 1 restaurant per page
+        setTotalPages(Math.ceil(response.data.totalCount / 1));
       } catch (error) {
         console.error("Error fetching restaurants:", error);
       }
@@ -42,12 +45,15 @@ function Restaurants() {
       {isLoggedIn && user ? (
         <>
           {restaurants.length > 0 ? (
-            <div key={restaurants[currentRestaurantIndex]._id}>
-              <img className='restaurantImg' src={restaurants[currentRestaurantIndex].image_url} alt="restaurant-picture" />
-              <h3>{restaurants[currentRestaurantIndex].name}</h3>
-              <p>{restaurants[currentRestaurantIndex].location.city}, {restaurants[currentRestaurantIndex].location.country}</p>
-              <button onClick={goToPreviousRestaurant} disabled={currentRestaurantIndex === 0}>Previous</button>
-              <button onClick={goToNextRestaurant} disabled={currentRestaurantIndex === restaurants.length - 1}>Next</button>
+            <div className='restaurants-container' key={restaurants[currentRestaurantIndex]._id}>
+              <img className='rest-bg' src={RestBg} alt="restaurants-background" />
+              <img className='restaurant-img' src={restaurants[currentRestaurantIndex].image_url} alt="restaurant-picture" />
+              <h3 className='rest-name'>{restaurants[currentRestaurantIndex].name}</h3>
+              <p className='rest-details'>{restaurants[currentRestaurantIndex].categories.title} • {restaurants[currentRestaurantIndex].price} • {restaurants[currentRestaurantIndex].rating}</p>
+              <div className='next-bttn'>
+              <button className='next-button' onClick={goToPreviousRestaurant} disabled={currentRestaurantIndex === 0}><img className='arrows' src={LeftArrow} /> </button>
+              <button className='next-button' onClick={goToNextRestaurant} disabled={currentRestaurantIndex === restaurants.length - 1}><img className='arrows' src={RightArrow} /></button>
+              </div>
             </div>
           ) : (
             <p>No restaurants found</p>

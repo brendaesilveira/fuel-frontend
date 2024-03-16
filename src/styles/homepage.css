@@ -2,10 +2,15 @@
 /* ------------------------------------------ HOME PAGE STYLES ------------------------------------------ */
 
 @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Comfortaa:wght@300..700&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
 
 body {
   margin: 0;
   overflow-y: hidden;
+}
+
+.home-page {
+  background-color: #fff6ea;
 }
 
 /* ---------------------------------- LEFT CONTAINER -> NAV, MENU ---------------------------------- */
@@ -71,10 +76,9 @@ body {
 /* ----------- MENU ----------- */
 
 .menu {
-  flex: 1;
   background-color: white;
   overflow-y: auto;
-  padding: 1rem;
+  padding: 0;
 }
 
 /* ----------- SETTINGS ----------- */
@@ -91,10 +95,63 @@ body {
   font-size: 0.6rem;
 }
 
-/* ----------- RESTAURANTS ----------- */
+/* ---------------------------------- RIGHT CONTAINER -> RESTAURANTS ---------------------------------- */
 
-.restaurantImg {
-  width: 50%;
-  height: auto;
-  right: 100%;
+.restaurants-container {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%) translateX(-60%);
+  width: 30%;
+  height: 80%;
+}
+
+.restaurant-img,
+.rest-bg {
+  position: absolute;
+  width: 90%;
+}
+
+.restaurant-img {
+  width: 75%;
+  height: 55%;
+  transform: translateY(10%) translateX(8.5%);
+}
+
+.rest-name,
+.next-bttn {
+  text-align: center;
+}
+
+.rest-name {
+  position: relative;
+  font-family: "Alfa Slab One", serif;
+  color: #ff3b01;
+  font-size: 1.5rem;
+  transform: translateY(880%) translateX(-10%);
+  letter-spacing: 2px;
+}
+.rest-details {
+  position: absolute;
+  font-family: 'Lato', serif;
+  font-weight: bold;
+  font-size: 0.8rem;
+  transform: translateY(1620%) translateX(50%);
+}
+
+.next-bttn {
+  display: flex;
+  justify-content: space-between;
+  transform: translateY(600%) translateX(-20%);
+}
+.next-button{
+  background-color: white;
+  border-radius: 50%;
+  cursor: pointer;
+  width: 5%;
+  height: 5%;
+  border: none;
+}
+.arrows {
+  width: 100%;
 }

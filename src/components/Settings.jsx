@@ -6,7 +6,7 @@ import Setup from '../pages/Setup';
 
 function Settings() {
   const [selectedCountry, setSelectedCountry] = useState('PT');
-  const [selectedCity, setSelectedCity] = useState('Lisboa');
+  const [selectedCity, setSelectedCity] = useState('Lisbon');
   const [image, setImage] = useState(null);
 
   const handleCountrySelection = (e) => {
@@ -50,8 +50,8 @@ function Settings() {
   };
 
   return (
-    <div className="menu">
-      <h1>Settings</h1>
+    <div className="settings-container">
+      <h1 className='settings'>Settings</h1>
       <Setup
         countries={countries}
         locations={locations}
@@ -63,6 +63,7 @@ function Settings() {
         handleSubmit={handleSubmit}
       />
       <button onClick={handleDeleteImage}>Remove profile picture</button>
+
     </div>
   );
 }
