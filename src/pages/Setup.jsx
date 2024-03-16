@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { uploadImage } from '../api/settings.api';
 import { setup } from '../api/auth.api';
@@ -63,7 +63,7 @@ export const locations = {
   NO: ['Oslo'],
   PH: ['Manila'],
   PL: ['Kraków', 'Warszawa'],
-  PT: ['Lisboa'],
+  PT: ['Lisbon'],
   IE: ['Dublin'],
   SG: ['Singapore'],
   ES: ['Barcelona', 'Madrid'],
@@ -78,7 +78,7 @@ export const locations = {
 
 function Setup() {
   const [selectedCountry, setSelectedCountry] = useState('PT');
-  const [selectedCity, setSelectedCity] = useState('Lisboa');
+  const [selectedCity, setSelectedCity] = useState('Lisbon');
   const [image, setImage] = useState(null);
   const navigate = useNavigate();
   const { logoutUser, user, setUser } = useContext(AuthContext);
@@ -87,9 +87,13 @@ function Setup() {
     setSelectedCountry(e.target.value);
   };
 
-  const handleCitySelection = (e) => {
+  const handleCitySelection = async (e) => {
     setSelectedCity(e.target.value);
   };
+
+  useEffect(() => {
+    setSelectedCity(locations[selectedCountry][0]);
+  }, [selectedCountry, locations]);
 
   const handleImage = ({target}) => {
     setImage(target.files[0])
@@ -132,7 +136,7 @@ function Setup() {
           ))}
         </select>
             <br />
-        <select className='select-location' name="cities" id="cities"  value={selectedCity} onChange={handleCitySelection}>
+        <select className='select-location' name="cities" value={selectedCity} onChange={handleCitySelection}>
           {locations[selectedCountry].map((city) => (
             <option key={city} value={city}>
               {city}
@@ -163,4 +167,3 @@ function Setup() {
 }
 
 export default Setup;
-

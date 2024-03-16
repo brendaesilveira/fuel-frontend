@@ -1,9 +1,9 @@
 import axios from 'axios';
+
 const baseURL = `${import.meta.env.VITE_RESTAURANTS_API}/api`;
 
 const setAuthorizationHeaders = () => {
   axios.interceptors.request.use(config => {
-// retrieve the token from localStorage
     const token = localStorage.getItem('authToken')
 
     if (token) {
@@ -18,30 +18,10 @@ const setAuthorizationHeaders = () => {
 
 setAuthorizationHeaders()
 
-export const getAllProjects = () => {
-  return axios.get(`${baseURL}/projects`);
+export const getRestaurant = restaurants => {
+  return axios.get(`${baseURL}/restaurants`, restaurants);
 };
 
-export const getProject = id => {
-  return axios.get(`${baseURL}/projects/${id}`);
+export const allRestaurants = (location, page) => {
+  return axios.get(`${baseURL}/restaurants/${location}`, { params: { page } });
 };
-
-export const addProject = project => {
-  return axios.post(`${baseURL}/projects`, project);
-};
-
-export const updateProject = updatedProject => {
-  return axios.put(`${baseURL}/projects/${updatedProject._id}`, updatedProject);
-};
-
-export const deleteProject = id => {
-  return axios.delete(`${baseURL}/projects/${id}`);
-};
-
-export const addTask = task => {
-  return axios.post(`${baseURL}/tasks`, task);
-};
-
-export const upload = image => {
-  return axios.post(`${baseURL}/upload`, image)
-}

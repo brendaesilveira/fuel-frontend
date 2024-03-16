@@ -1,12 +1,12 @@
+import { useState } from 'react';
 import Settings from './Settings';
 
-
-function Menu() {
+function Menu({ showSettings }) {
   return (
     <div className='menu'>
-          <Settings />
+      <Settings />
     </div>
   )
 }
 
-export default Menu
+export default Menu;

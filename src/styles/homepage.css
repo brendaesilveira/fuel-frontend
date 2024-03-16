@@ -76,3 +76,25 @@ body {
   overflow-y: auto;
   padding: 1rem;
 }
+
+/* ----------- SETTINGS ----------- */
+
+.settings-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.settings {
+  font-family: 'Lato', serif;
+  font-size: 0.6rem;
+}
+
+/* ----------- RESTAURANTS ----------- */
+
+.restaurantImg {
+  width: 50%;
+  height: auto;
+  right: 100%;
+}
