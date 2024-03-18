@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Comfortaa:wght@300..700&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=League+Spartan:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+
+.connect-page {
+    background-color: #fff6ea;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+.connect-form {
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+}
+.connect-text {
+    font-family: "Comfortaa", sans-serif;
+    color: #ff3b01;
+    font-size: 1.5rem;
+    text-align: center;
+}
+.connect-link {
+    font-family: "Comfortaa", sans-serif;
+    font-weight: bold;
+    border: none;
+    background-color: transparent;
+    color: #004aad;
+    text-decoration: underline;
+    cursor: pointer;
+}
+.link-clicked {
+    color: black;
+  }
+.start-btn {
+    padding: 1% 5%;
+    margin: 5% 0 5% 0;
+    font-size: 1.2rem;
+    background-color: transparent;
+    border: #ff3b01 2px solid;
+    border-radius: 30px;
+    font-family: "Comfortaa", sans-serif;
+    text-decoration: none;
+    color: black;
+    cursor: pointer;
+    font-weight: bold;
+}
+.start-btn:hover {
+    background-color: #ff3b01;
+    color: white;
+  }
+.skip-btn {
+    font-size: 0.8rem;
+    background-color: transparent;
+    border: none;
+    font-family: "Comfortaa", sans-serif;
+    text-decoration: none;
+    color: black;
+    cursor: pointer;
+    font-weight: bold;
+}
+.skip-btn:hover {
+    color: #ff3b01;
+  }
+.user-code {
+    font-family: "League Spartan", sans-serif;
+    color: #ff3b01;
+    font-size: 3rem;
+    font-weight: bold;
+}
+.input-label {
+    font-family: 'Lato', serif;
+    text-align: center;
+}
+.connect-input {
+  font-family: "Comfortaa", sans-serif;
+  font-size: 0.8rem;
+  border: none;
+  background-color: #E4DED5;
+  align-items: center;
+  color: black;
+  width: 90%;
+  padding: 8px 10px;
+  margin: 0 auto;
+}
+.connect-input:focus {
+outline: none;
+}

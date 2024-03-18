@@ -4,8 +4,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Comfortaa:wght@300..700&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
 
-body {
+body, html {
   margin: 0;
+  padding: 0;
   overflow-y: hidden;
 }
 
@@ -139,19 +140,69 @@ body {
   transform: translateY(1620%) translateX(50%);
 }
 
-.next-bttn {
+.next-bttn-container {
   display: flex;
   justify-content: space-between;
-  transform: translateY(600%) translateX(-20%);
+  width: 120%;
+  transform: translateY(200%) translateX(-12%);
 }
-.next-button{
+
+.next-button {
+  width: 10%;
+  height: 5%;
+}
+.activity-bttn-container{
+  display: flex;
+  align-items: center;
+  width: 90%;
+  transform: translateY(400%) translateX(7%);
+/*   outline: red 2px solid; */
+}
+
+.activity-bttn-container button {
+margin: 10px;
+}
+.next-button,
+.like-button,
+.dislike-button,
+.refresh-button,
+.fav-button,
+.refresh-button,
+.been-button {
   background-color: white;
   border-radius: 50%;
   cursor: pointer;
-  width: 5%;
-  height: 5%;
   border: none;
 }
-.arrows {
+
+.like-button,
+.dislike-button {
+  width: 15%;
+  height: 10%;
+}
+
+.refresh-button,
+.fav-button,
+.refresh-button,
+.been-button {
+  width: 10%;
+  height: 10%;
+  display: flex;
+  align-content:flex-end;
+}
+
+.like-button,
+.dislike-button,
+.refresh-button,
+.fav-button,
+.refresh-button,
+.been-button {
+  margin: 0;
+}
+
+.bttn-icon {
   width: 100%;
+}
+.dot {
+  color: #ff3b01;
 }

@@ -2,9 +2,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
 
 .setup-container {
-    height: 100vh;
-    top: 0;
-    left: 50%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .setup-form {
     display: flex;
@@ -22,14 +23,18 @@
 .setup-text {
     color: #ff3b01;
     font-family: "Comfortaa", sans-serif;
-    margin: 0;
+    font-size: 1.8rem;
+    margin: 1% 0;
 }
 .optional {
     font-family: "Lato", sans-serif;
     font-style: italic;
-    font-size: 0.4rem;
+    font-size: 0.6rem;
     color: grey;
-    margin: 0;
+    margin-left: 8px;
+    margin-top: auto; /* Push to the bottom */
+    display: flex;
+    align-self: flex-end;
 }
 .select-location {
     background-color: #efecec;

@@ -56,3 +56,12 @@ export const updatePassword = updatedPassword => {
 export const deleteAccount = id => {
   return axios.delete(`${baseURL}/settings/delete/${id}`);
 };
+
+export const connectUsers = async (userCode, friendCode) => {
+  try {
+    const response = await axios.post(`${baseURL}/connect`, { userCode, friendCode });
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+}

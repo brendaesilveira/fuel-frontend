@@ -118,7 +118,7 @@ function Setup() {
     const response =  await setup(requestBody);
       setUser(response.data)
 
-      navigate('/home');
+      navigate('/connect');
     } catch (error) {
       console.log(error);
     }

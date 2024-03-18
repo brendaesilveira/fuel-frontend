@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { ThemeContext } from '../context/theme.context';
 import { useContext } from 'react';
 import logoutIcon from '../assets/img/logout-icon.png';
@@ -10,6 +10,12 @@ import { AuthContext } from '../context/auth.context';
 function Navbar() {
   const { theme, toggleTheme } = useContext(ThemeContext);
   const { isLoggedIn, user, logoutUser } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logoutUser();
+    navigate('/');
+  };
 
   return (
     <nav className={`Navbar ${theme}`}>
@@ -27,7 +33,7 @@ function Navbar() {
             <button className='nav-bttn' onClick={() => setShowSettings(true)}>
               <img src={settingsIcon} alt="settings" />
             </button>
-            <button className='nav-bttn' onClick={logoutUser}>
+            <button className='nav-bttn' onClick={handleLogout}>
               <img src={logoutIcon} alt="logout" />
             </button>
           </div>

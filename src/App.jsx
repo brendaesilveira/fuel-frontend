@@ -7,6 +7,7 @@ import "../src/styles/login-page.css";
 import "../src/styles/mainpage.css";
 import "../src/styles/signup.css";
 import "../src/styles/setup.css"
+import "../src/styles/connect-page.css"
 
 // Components
 import Match from './components/Match'
