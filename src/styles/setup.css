@@ -32,7 +32,7 @@
     font-size: 0.6rem;
     color: grey;
     margin-left: 8px;
-    margin-top: auto; /* Push to the bottom */
+    margin-top: auto;
     display: flex;
     align-self: flex-end;
 }
