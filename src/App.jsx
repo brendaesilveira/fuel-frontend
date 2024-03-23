@@ -24,14 +24,13 @@ import Setup from './pages/Setup'
 import Profile from './pages/Profile'
 // Context
 import { useContext } from 'react';
-import { ThemeContext } from './context/theme.context';
+import { SettingsContext } from './context/settings.context';
 
 
 function App() {
-  const { theme } = useContext(ThemeContext);
 
   return (
-    <div className={`App ${theme}`}>
+    <div>
 
       <Routes>
         <Route

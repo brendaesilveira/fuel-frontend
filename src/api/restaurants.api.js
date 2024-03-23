@@ -34,6 +34,10 @@ export const addFavorite = favourite => {
   return axios.post(`${baseURL}/favourites`, favourite);
 };
 
+export const getFavorites = (userCode) => {
+  return axios.get(`${baseURL}/favourites?userCode=${userCode}`);
+};
+
 export const addBeen = been => {
   return axios.post(`${baseURL}/been`, been);
 };
@@ -41,3 +45,13 @@ export const addBeen = been => {
 export const handleLike = likes => {
   return axios.post(`${baseURL}/likes`, likes);
 };
+
+export const getLikes = (userCode) => {
+  return axios.get(`${baseURL}/likes?userCode=${userCode}`);
+};
+
+export const getMatches = (userCode, friendCode) => {
+  return axios.get(`${baseURL}/match?userCode=${userCode}&friendCode=${friendCode}`);
+};
+
+

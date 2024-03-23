@@ -2,16 +2,16 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App.jsx';
 import { BrowserRouter as Router } from 'react-router-dom';
-import { ThemeProviderWrapper } from './context/theme.context.jsx';
+import { SettingsProviderWrapper } from './context/settings.context.jsx';
 import { AuthProviderWrapper } from './context/auth.context.jsx';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <Router>
       <AuthProviderWrapper>
-        <ThemeProviderWrapper>
+        <SettingsProviderWrapper>
           <App />
-        </ThemeProviderWrapper>
+        </SettingsProviderWrapper>
       </AuthProviderWrapper>
     </Router>
   </React.StrictMode>
