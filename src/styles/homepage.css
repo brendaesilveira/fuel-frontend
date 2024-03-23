@@ -164,7 +164,7 @@ margin: 10px;
 }
 .next-button,
 .like-button,
-.dislike-button,
+.discard-button,
 .refresh-button,
 .fav-button,
 .refresh-button,
@@ -176,7 +176,7 @@ margin: 10px;
 }
 
 .like-button,
-.dislike-button {
+.discard-button {
   width: 15%;
   height: 10%;
 }
@@ -192,7 +192,7 @@ margin: 10px;
 }
 
 .like-button,
-.dislike-button,
+.discard-button,
 .refresh-button,
 .fav-button,
 .refresh-button,

@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const baseURL = `${import.meta.env.VITE_RESTAURANTS_API}/api`;
+export const baseURL = `${import.meta.env.VITE_RESTAURANTS_API}/api`;
 
 const setAuthorizationHeaders = () => {
   axios.interceptors.request.use(config => {
@@ -24,4 +24,20 @@ export const getRestaurant = restaurants => {
 
 export const allRestaurants = (location, page) => {
   return axios.get(`${baseURL}/restaurants/${location}`, { params: { page } });
+};
+
+export const discardRestaurant = restaurant => {
+  return axios.post(`${baseURL}/discards`, restaurant);
+};
+
+export const addFavorite = favourite => {
+  return axios.post(`${baseURL}/favourites`, favourite);
+};
+
+export const addBeen = been => {
+  return axios.post(`${baseURL}/been`, been);
+};
+
+export const handleLike = likes => {
+  return axios.post(`${baseURL}/likes`, likes);
 };
