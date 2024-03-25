@@ -1,10 +1,10 @@
-import { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { uploadImage } from '../api/settings.api';
 import { setup } from '../api/auth.api';
 import { AuthContext } from '../context/auth.context';
-import logoutIcon from '../assets/img/logout-icon.png';
 import uploadIcon from '../assets/img/upload-icon.png';
+import removeIcon from '../assets/img/remove-icon.png';
 
 export const countries = {
   AU: 'Australia',
@@ -76,91 +76,99 @@ export const locations = {
   US: ['Chicago', 'Los Angeles', 'New York', 'San Francisco']
 };
 
-function Setup() {
+const Setup = () => {
+  const navigate = useNavigate();
+  const { logoutUser, user, setUser } = useContext(AuthContext);
   const [selectedCountry, setSelectedCountry] = useState('PT');
   const [selectedCity, setSelectedCity] = useState('Lisbon');
   const [image, setImage] = useState(null);
-  const navigate = useNavigate();
-  const { logoutUser, user, setUser } = useContext(AuthContext);
+  const [imageName, setImageName] = useState('No image selected');
+  const imageInputRef = useRef(null);
+
+  useEffect(() => {
+    setSelectedCity(locations[selectedCountry][0]);
+  }, [selectedCountry]);
 
   const handleCountrySelection = (e) => {
     setSelectedCountry(e.target.value);
   };
 
-  const handleCitySelection = async (e) => {
+  const handleCitySelection = (e) => {
     setSelectedCity(e.target.value);
   };
 
-  useEffect(() => {
-    setSelectedCity(locations[selectedCountry][0]);
-  }, [selectedCountry, locations]);
+  const handleImage = ({ target }) => {
+    const file = target.files[0];
+    if (file) {
+      setImage(file);
+      setImageName(file.name);
+    }
+  };
 
-  const handleImage = ({target}) => {
-    setImage(target.files[0])
-  }
+  const handleImageUploadClick = () => {
+    imageInputRef.current.click();
+  };
 
-  const handleSubmit = async e => {
+  const removeImage = () => {
+    setImage(null);
+    setImageName('No image selected');
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     try {
-      e.preventDefault();
-
-      const requestBody = { location: {country: selectedCountry, city: selectedCity}, _id: user._id };
+      const requestBody = { location: { country: selectedCountry, city: selectedCity }, _id: user._id };
 
       if (image) {
-        const uploadData = new FormData()
-        uploadData.append('file', image)
-
+        const uploadData = new FormData();
+        uploadData.append('file', image);
         const response = await uploadImage(uploadData);
-        console.log(response.data.imgUrl)
-
-        requestBody.imgUrl = response.data.imgUrl
+        requestBody.imgUrl = response.data.imgUrl;
       }
 
-    const response =  await setup(requestBody);
-      setUser(response.data)
-
+      const response = await setup(requestBody);
+      setUser(response.data);
       navigate('/connect');
     } catch (error) {
-      console.log(error);
+      console.error('Error:', error);
     }
   };
 
   return (
     <div className='setup-container' style={{ backgroundColor: 'white' }}>
       <form className='setup-form' onSubmit={handleSubmit}>
-        <p className='setup-text'>Enter your location</p>
-        <select className='select-location' name="countries" value={selectedCountry} onChange={handleCountrySelection}>
-          {Object.entries(countries).map(([code, name]) => (
-            <option key={code} value={code}>
-              {name}
-            </option>
-          ))}
-        </select>
-            <br />
-        <select className='select-location' name="cities" value={selectedCity} onChange={handleCitySelection}>
-          {locations[selectedCountry].map((city) => (
-            <option key={city} value={city}>
-              {city}
-            </option>
-          ))}
-        </select>
-
+        <p className='location-text'>Enter your location <span className="mandatory">*</span></p>
+        <div className='select-container'>
+          <select className='select-location' name="countries" value={selectedCountry} onChange={handleCountrySelection}>
+            {Object.entries(countries).map(([code, name]) => (
+              <option key={code} value={code}>{name}</option>
+            ))}
+          </select>
+          <br />
+          <select className='select-location' name="cities" value={selectedCity} onChange={handleCitySelection}>
+            {locations[selectedCountry].map((city) => (
+              <option key={city} value={city}>{city}</option>
+            ))}
+          </select>
+        </div>
         <div className='upload-paragraphs'>
-          <p className='setup-text'>Upload a profile picture</p>
+          <p className='image-text'>Upload a profile picture</p>
           <p className='optional'>optional</p>
         </div>
-
         <div className="image-upload">
-          <label>
+          <label htmlFor="image">
             <img className='upload-icon' src={uploadIcon} alt="upload-img-icon" />
           </label>
-        <input type="file" id="image" onChange={handleImage} />
+          <input type="file" id="image" ref={imageInputRef} style={{ display: 'none' }} onChange={handleImage} />
         </div>
-
-        <button type="submit">Add</button>
-
-        <button className="logout" onClick={logoutUser}>
-          <img src={logoutIcon} alt="logout" />
-        </button>
+        <div className='image-container'>
+          <p className='image-name'>{imageName}</p>
+          {imageName !== 'No image selected' && (
+            <img src={removeIcon} alt="remove-icon" className="remove-image" onClick={removeImage} />
+          )}
+        </div>
+        <button className='add-button' type="submit">Add</button>
+        <button className="logout" onClick={logoutUser}>Logout</button>
       </form>
     </div>
   );

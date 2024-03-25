@@ -12,20 +12,29 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100vh;
-    top: 0;
-    left: 50%;
+    width: 50%;
+    margin: auto;
+    padding: 20px;
+    box-sizing: border-box;
 }
 .upload-paragraphs {
     display: flex;
     justify-content: space-between;
 }
-.setup-text {
+.location-text,
+.image-text {
     color: #ff3b01;
     font-family: "Comfortaa", sans-serif;
     font-size: 1.8rem;
     margin: 1% 0;
 }
+.location-text {
+    margin-bottom: 5%;
+}
+.mandatory {
+    color: grey;
+  }
+
 .optional {
     font-family: "Lato", sans-serif;
     font-style: italic;
@@ -36,35 +45,84 @@
     display: flex;
     align-self: flex-end;
 }
+.select-container {
+    width: 100%;
+    margin: 2% 0;
+}
 .select-location {
     background-color: #efecec;
     font-family: "Lato", sans-serif;
     font-style: italic;
     border: none;
     color: grey;
-    width: 50%;
+    width: 100%;
+    font-size: 1.2rem;
+    margin-bottom: 3%;
 }
 
-.logout {
-    width: 5%;
-    height: auto;
-    background-color: #ff3b01;
-}
-
-.logout img {
-    width: 5%;
-    height: auto;
-}
 .image-upload {
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative;
 }
-/* .image-upload>input {
-    visibility:hidden;
-  } */
 
 .upload-icon {
-    width: 10%;
+    width: 100px;
     cursor: pointer;
+    margin-top: 30%;
+}
+
+#image {
+    position: absolute;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+.image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+}
+.image-name {
+    font-family: "Lato", sans-serif;
+    font-size: 0.8rem;
+    font-style: italic;
+}
+
+.remove-image {
+    width: 2%;
+    cursor: pointer;
+}
+
+.add-button {
+    padding: 0.5% 3%;
+    margin-top: 3%;
+    font-size: 1.5rem;
+    background-color: transparent;
+    border: #ff3b01 2px solid;
+    border-radius: 30px;
+    font-family: "Comfortaa", sans-serif;
+    text-decoration: none;
+    color: black;
+    cursor: pointer;
+}
+.add-button:hover {
+    background-color: #ff3b01;
+    color: white;
+}
+
+.logout {
+    font-size: 0.6rem;
+    color: black;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    text-decoration: underline;
+    margin: 1%;
 }

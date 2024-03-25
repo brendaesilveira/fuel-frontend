@@ -3,13 +3,21 @@ import { useState, useContext } from "react";
 import { login } from '../api/auth.api';
 import { AuthContext } from "../context/auth.context";
 import fullLogo from '../assets/img/logo+slogan.png';
+import closedEye from '../assets/img/closed-eye.png';
+import openedEye from '../assets/img/opened-eye.png';
+import { Link } from "react-router-dom";
 
 const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [showPassword, setShowPassword] = useState(false);
     const [error, setError] = useState(null);
     const { storeToken, authenticateUser } = useContext(AuthContext);
     const navigate = useNavigate();
+
+    const togglePasswordVisibility = () => {
+        setShowPassword(!showPassword);
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -18,7 +26,6 @@ const Login = () => {
 
         try {
             const response = await login(user);
-            console.log(user)
             storeToken(response.data.authToken);
             authenticateUser();
 
@@ -27,8 +34,6 @@ const Login = () => {
             } else {
                 navigate('/home');
             }
-
-
         } catch (error) {
             console.log("error logging in", error);
             setError(error.response.data.message);
@@ -49,16 +54,25 @@ const Login = () => {
                         placeholder="email"
                         className="login-input"
                         onChange={({ target }) => setEmail(target.value)} />
-                    <input
-                        type="password"
-                        name="password"
-                        value={password}
-                        placeholder="password"
-                        className="login-input"
-                        onChange={({ target }) => setPassword(target.value)} />
+                    <div className="password-input-container">
+                        <input
+                            type={showPassword ? "text" : "password"}
+                            name="password"
+                            value={password}
+                            placeholder="password"
+                            className="login-input"
+                            onChange={({ target }) => setPassword(target.value)} />
+                        <img
+                            src={showPassword ? openedEye : closedEye}
+                            alt="toggle-password"
+                            className="toggle-password-icon"
+                            onClick={togglePasswordVisibility}
+                        />
+                    </div>
                     <button type="submit" className="login-button">Log In</button>
+                    <Link className="navigation-link" to={'/'}>Back</Link>
                 </form>
-                {error && <p>{error}</p>}
+                {error && <p className="error-message">{error}</p>}
             </div>
         </div>
     );

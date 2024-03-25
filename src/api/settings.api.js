@@ -29,9 +29,9 @@ export const settings = async (requestData) => {
   }
 };
 
-export const uploadImage = image => {
-  return axios.post(`${baseURL}/settings/upload`, image);
-}
+export const uploadImage = async (formData) => {
+  return axios.post(`${baseURL}/settings/upload`, formData);
+};
 
 export const deleteImage = image => {
   return axios.delete(`${baseURL}/settings/upload`);

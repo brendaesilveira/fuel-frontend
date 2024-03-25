@@ -1,70 +1,93 @@
-
 /* ------------------------------------------ LOGIN STYLES ------------------------------------------ */
 
 @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
 
-  .logo-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 45vh;
-  }
+.logo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 45vh;
+}
 
-  .logo-container img {
-    width: 45%;
-    margin-bottom: 0;
-  }
+.logo-container img {
+  width: 45%;
+  margin-bottom: 0;
+}
 
-  .login-form-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 55vh;
-    background-color: white;
-  }
+.login-form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 55vh;
+  background-color: white;
+}
 
-  .login-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
+.login-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
-  .login-input,
-  textarea {
-    font-family: "Comfortaa", sans-serif;
-    font-size: 0.8rem;
-    padding: 1% 40% 1% 3%;
-    margin: 4%;
-    border: none;
-    background-color: #f8f8f8;
-    text-align: left;
-  }
+.login-input,
+textarea {
+  font-family: "Comfortaa", sans-serif;
+  font-size: 1.3rem;
+  padding: 1% 6% 1% 2%;
+  margin: 2% auto;
+  border: none;
+  background-color: #f8f8f8;
+  text-align: left;
+  width: 400px;
+}
 
-  .login-input:focus,
-  textarea:focus {
+.login-input:focus,
+textarea:focus {
   outline: none;
 }
 
-  .login-input::placeholder {
-    font-style: italic;
-    font-family: 'Lato', serif;
-  }
-  .login-button {
-    padding: 3% 10%;
-    margin: 10% 0 0 0;
-    font-size: 1rem;
-    background-color: transparent;
-    border: #ff3b01 2px solid;
-    border-radius: 30px;
-    font-family: "Comfortaa", sans-serif;
-    text-decoration: none;
-    color: black;
-    cursor: pointer;
-  }
+.login-input::placeholder {
+  font-style: italic;
+  font-family: 'Lato', serif;
+}
 
-  .login-button:hover {
-    background-color: #ff3b01;
-    color: white;
-  }
+.password-input-container {
+  position: relative;
+  width: 400px;
+}
+
+.toggle-password-icon {
+  position: absolute;
+  top: 50%;
+  right: -7%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: auto;
+  cursor: pointer;
+}
+
+.login-button {
+  padding: 1% 8%;
+  margin: 4% auto;
+  font-size: 1.5rem;
+  background-color: transparent;
+  border: #ff3b01 2px solid;
+  border-radius: 30px;
+  font-family: "Comfortaa", sans-serif;
+  text-decoration: none;
+  color: black;
+  cursor: pointer;
+}
+
+.login-button:hover {
+  background-color: #ff3b01;
+  color: white;
+}
+
+.error-message {
+  font-family: "Comfortaa", sans-serif;
+  font-size: 0.8rem;
+  font-weight: bold;
+  color: #ff3b01;
+}
