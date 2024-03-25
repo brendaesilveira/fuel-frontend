@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { AuthContext } from '../context/auth.context';
 import { SettingsContext } from '../context/settings.context';
 import Settings from './Settings';
@@ -22,11 +22,8 @@ function Menu() {
   const fetchMatches = async (userCode, friendCode) => {
     try {
       const response = await getMatches(userCode, friendCode);
-      if (Array.isArray(response.data.match)) {
-        setMatches(response.data.match);
-      } else {
-        console.error('Matches data is not an array:', response.data.match);
-      }
+      setMatches(response.data.match.restaurants);
+
     } catch (error) {
       console.error('Error fetching matches:', error);
     }
@@ -35,11 +32,8 @@ function Menu() {
   const fetchFavoriteRestaurants = async (userCode) => {
     try {
       const response = await getFavorites(userCode);
-      if (Array.isArray(response.data.favourites)) {
         setFavoriteRestaurants(response.data.favourites);
-      } else {
-        console.error('Favorite restaurants data is not an array:', response.data.favourites);
-      }
+
     } catch (error) {
       console.error('Error fetching favorite restaurants:', error);
     }
@@ -47,23 +41,44 @@ function Menu() {
 
   return (
     <div className='menu'>
-      {showSettings && <Settings />}
-      <div className="tab-header">
-        <h3 className={activeTab === 'matches' ? 'active-tab' : ''} onClick={() => setActiveTab('matches')}>Matches</h3>
-        <h3 className={activeTab === 'favourites' ? 'active-tab' : ''} onClick={() => setActiveTab('favourites')}>Favourites</h3>
-      </div>
-      <div className="tab-content">
-        {activeTab === 'matches' && (
-          <p>Matches go here</p>
-        )}
-        {activeTab === 'favourites' && (
-          <ul>
-            {favoriteRestaurants.map((restaurant, index) => (
-              <li key={index}>{restaurant.name}</li>
+      {!showSettings && (
+        <div className="tab-header">
+          <h3 className={activeTab === 'matches' ? 'active-tab' : ''} onClick={() => setActiveTab('matches')}>Matches</h3>
+          <h3 className={activeTab === 'favourites' ? 'active-tab' : ''} onClick={() => setActiveTab('favourites')}>Favourites</h3>
+        </div>
+      )}
+      {!showSettings && (
+        <div className="tab-content">
+          {activeTab === 'matches' && (
+            <ul className='favourites-list'>
+            {matches.map((restaurant, index) => (
+            <li className='fav-list-item' key={index}>
+            <div className='fav-rest'>
+            <img className='rest-img-favourites' src={restaurant.image_url} alt={restaurant.name} />
+            <p className='rest-name-favourites'>{restaurant.name}</p>
+            </div>
+            </li>
             ))}
-          </ul>
-        )}
-      </div>
+
+            </ul>
+
+          )}
+          {activeTab === 'favourites' && (
+            <ul className='favourites-list'>
+            {favoriteRestaurants.map((restaurant, index) => (
+            <li className='fav-list-item' key={index}>
+            <div className='fav-rest'>
+            <img className='rest-img-favourites' src={restaurant.image_url} alt={restaurant.name} />
+            <p className='rest-name-favourites'>{restaurant.name}</p>
+            </div>
+            </li>
+            ))}
+
+            </ul>
+          )}
+        </div>
+      )}
+      {showSettings && <div className="settings-overlay"><Settings /></div>}
     </div>
   );
 }

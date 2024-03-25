@@ -50,6 +50,10 @@ export const getLikes = (userCode) => {
   return axios.get(`${baseURL}/likes?userCode=${userCode}`);
 };
 
+export const getBeen = (userCode) => {
+  return axios.get(`${baseURL}/been?userCode=${userCode}`);
+};
+
 export const getMatches = (userCode, friendCode) => {
   return axios.get(`${baseURL}/match?userCode=${userCode}&friendCode=${friendCode}`);
 };
