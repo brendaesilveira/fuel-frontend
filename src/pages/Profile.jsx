@@ -73,10 +73,10 @@ function Profile() {
 
           <div className="tab-content-container">
            {activeTab === 'been' && (
-            <ul className='favourites-list'>
+            <ul className='restaurants-list'>
             {beenRestaurants.map((restaurant, index) => (
-            <li className='fav-list-item' key={index}>
-            <div className='fav-rest'>
+            <li className='restaurant-list-li' key={index}>
+            <div className='fav-details'>
             <img className='rest-img-favourites' src={restaurant.image_url} alt={restaurant.name} />
             <p className='rest-name-favourites'>{restaurant.name}</p>
             </div>
@@ -85,10 +85,10 @@ function Profile() {
             </ul>
           )}
           {activeTab === 'likes' && (
-            <ul className='favourites-list'>
+            <ul className='restaurants-list'>
             {likedRestaurants.map((restaurant, index) => (
-            <li className='fav-list-item' key={index}>
-            <div className='fav-rest'>
+            <li className='restaurant-list-li' key={index}>
+            <div className='fav-details'>
             <img className='rest-img-favourites' src={restaurant.image_url} alt={restaurant.name} />
             <p className='rest-name-favourites'>{restaurant.name}</p>
             </div>

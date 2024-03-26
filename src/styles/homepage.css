@@ -82,21 +82,44 @@ body, html {
   overflow-y: auto;
   padding: 0 10px;
   height: 100vh;
+  overflow-y: auto;
 }
 
 .menu h3 {
   font-family: "Comfortaa", sans-serif;
-}
-
-.tab-header {
-  display: flex;
-}
-
-.tab-header h3 {
   margin-right: 10px;
   cursor: pointer;
 }
-
+.tab-header {
+  display: flex;
+  max-width: 60vh;
+  max-height: 10vh;
+}
+.no-content-matches,
+.no-content-favourites {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+  width: 60vh;
+}
+.baloon {
+  width: 50%;
+}
+.menu h2 {
+  font-family: "Comfortaa", sans-serif;
+}
+.no-matches-text,
+.no-fav-text {
+  text-align: center;
+  font-family: "Comfortaa", sans-serif;
+  font-size: 0.8rem;
+  color: darkgray;
+}
+.no-fav-text {
+  padding-bottom: 16%;
+}
 .active-tab {
   font-weight: bold;
   text-decoration: underline;
@@ -108,22 +131,12 @@ body, html {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  padding: 0;
-  margin: 0;
-  list-style-type: none;
+  width: 50vh;
 }
-
-.fav-list-item {
-  width: calc(50% - 10px);
-  margin-bottom: 20px;
-}
-
-.fav-rest {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+.favourites-list-li {
+  width: 40%;
   text-align: center;
+  list-style-type: none;
 }
 .rest-name-favourites {
   font-family: "Comfortaa", sans-serif;
@@ -134,7 +147,23 @@ body, html {
   width: 100px;
   height: 100px;
   border-radius: 50%;
-  margin-right: 0.5rem;
+}
+.remove-fav-button {
+  display: flex;
+  position: absolute;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+.remove-fav {
+  width: 1%;
+}
+.fav-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
 /* ----------- SETTINGS ----------- */
@@ -302,7 +331,6 @@ textarea:focus {
   align-items: center;
   width: 90%;
   transform: translateY(400%) translateX(7%);
-/*   outline: red 2px solid; */
 }
 
 .activity-bttn-container button {

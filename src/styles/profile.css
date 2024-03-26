@@ -1,4 +1,4 @@
-/* ------------------------------------------ HOME PAGE STYLES ------------------------------------------ */
+/* ------------------------------------------ PROFILE STYLES ------------------------------------------ */
 
 @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Comfortaa:wght@300..700&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
@@ -7,8 +7,10 @@
 .profile-page {
     display: flex;
     height: 100vh;
+    width: auto;
     background-color: #fff6ea;
 }
+/* ------------------------------------------ PROFILE NAV ------------------------------------------ */
 .profile-nav {
     display: flex;
     align-items: center;
@@ -24,18 +26,29 @@
 }
 .profile-nav-icon {
     align-self: center;
-    width: 3%;
+    width: 4%;
 }
-.profile-page {
-    display: flex;
-    justify-content: space-between;
-}
+/* ------------------------------------------ LEFT - PROFILE DETAILS ------------------------------------------ */
 .profile-details-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     width: 40%;
+}
+.profile-profileImg {
+    width: 50%;
+    max-width: 250px;
+    height: 35%;
+    max-height: 250px;
+    padding: 0;
+    border: 8px solid transparent;
+    border-radius: 50%;
+    background-image: linear-gradient(transparent, transparent),
+                      linear-gradient(to right, #ff3b01, #ff721b);
+    background-clip: content-box, border-box;
+    background-origin: border-box;
+    object-fit: cover;
 }
 .profile-username {
     font-family: "Lato", sans-serif;
@@ -44,26 +57,19 @@
 .profile-userlocation {
     font-family: "Comfortaa", sans-serif;
 }
+/* -------- TAB HEADERS -------- */
 .profile-tab-content-wrapper {
-    width: 60%;
-    display: flex;
-    flex-direction: column;
+    width: 80%;
+    /* outline: 1px solid blue; */
 }
 .profile-tab-container {
-    width: 60%;
+    width: 100%;
+    height: 20vh;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-around;
-}
-.tab-content-container {
-    width: 100%;
-}
-.profile-profileImg {
-    width: 50%;
-    padding: 0;
-    border: 8px solid #ff3b01;
-    border-radius: 50%;
+    /* outline: 1px solid yellow; */
 }
 .profile-page h3 {
     font-family: "Comfortaa", sans-serif;
@@ -83,3 +89,34 @@
     padding: 0.5% 3%;
     color: white;
   }
+
+/* -------- TAB CONTENT > RESTAURANTS -------- */
+.tab-content-container {
+    display: flex;
+    justify-content: space-around;
+    max-width: 140vh;
+    max-height: 70%;
+    overflow-x: auto;
+}
+.restaurants-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 100%;
+    max-height: 60vh;
+}
+.restaurant-list-li {
+    width: 30%;
+    text-align: center;
+    list-style-type: none;
+}
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-thumb {
+    background: #ff3b01;
+    border-radius: 6px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #ff721b;
+}

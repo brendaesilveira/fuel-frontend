@@ -38,6 +38,15 @@ export const getFavorites = (userCode) => {
   return axios.get(`${baseURL}/favourites?userCode=${userCode}`);
 };
 
+export const removeFavorite = (userCode, restaurantId) => {
+  return axios.delete(`${baseURL}/favourites`, {
+    data: {
+      userCode: userCode,
+      restaurantId: restaurantId
+    }
+  });
+};
+
 export const addBeen = been => {
   return axios.post(`${baseURL}/been`, been);
 };

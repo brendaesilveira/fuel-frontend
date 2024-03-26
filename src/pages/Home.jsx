@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "../context/auth.context";
 import Navbar from "../components/Navbar"
 import Menu from "../components/Menu"
@@ -6,10 +6,17 @@ import Restaurants from "../components/Restaurants"
 
 function Home() {
 const {user} = useContext(AuthContext)
+const [favoriteRestaurants, setFavoriteRestaurants] = useState([]);
+
+
+const updateFavoriteRestaurants = async () => {
+  // Logic to update favorite restaurants state
+  setFavoriteRestaurants(/* updated favorite restaurants array */);
+}
 
   return (
     <div className="home-page">
-          <Restaurants />
+           <Restaurants updateFavoriteRestaurants={updateFavoriteRestaurants} />
 
     <div className="left-container">
           <Navbar />

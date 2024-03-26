@@ -11,9 +11,8 @@ import Like from '../assets/img/like-btn.png';
 import Discard from '../assets/img/discard-btn.png';
 import Favourite from '../assets/img/fav-btn.png';
 import Been from '../assets/img/been-btn.png';
-import Refresh from '../assets/img/refresh-btn.png';
 
-function Restaurants() {
+function Restaurants({ updateFavoriteRestaurants }) {
   const { isLoggedIn, user } = useContext(AuthContext);
   const [restaurants, setRestaurants] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -72,9 +71,8 @@ function Restaurants() {
         restaurantId
       });
       if (response.data.message === 'Restaurant added to favorites successfully') {
-        alert('Restaurant added to favorites!');
+        updateFavoriteRestaurants();
       }
-      window.location.reload();
       goToNextRestaurant();
     } catch (error) {
       console.error("Error adding restaurant to favorites:", error);
@@ -118,14 +116,14 @@ function Restaurants() {
       console.log(response)
       if (response.data.message === 'Restaurant liked and match created successfully') {
         setMatchedData({
-          friendName: user.connections[0].user,
+          friendName: user.connections[0].userName,
           restaurantName: restaurants[currentRestaurantIndex].name,
           restaurantImage: restaurants[currentRestaurantIndex].image_url
         });
         setShowMatch(true);
       } else if (response.data.message === 'Match already exists for this restaurant') {
         setMatchedData({
-          friendName: user.connections[0].user,
+          friendName: user.connections[0].userName,
           restaurantName: restaurants[currentRestaurantIndex].name,
           restaurantImage: restaurants[currentRestaurantIndex].image_url
         });
@@ -156,7 +154,6 @@ function Restaurants() {
                   </div>
                   <div className='activity-bttn-container'>
                     <button className='discard-button' onClick={handleDiscardClick}><img className='bttn-icon' src={Discard} /> </button>
-                   {/*  <button className='refresh-button'><img className='bttn-icon' src={Refresh} /> </button> */}
                     <button className='fav-button' onClick={handleFavoriteClick}><img className='bttn-icon' src={Favourite} /> </button>
                     <button className='been-button' onClick={handleBeenClick}><img className='bttn-icon' src={Been} /> </button>
                     <button className='like-button' onClick={handleLikeClick}><img className='bttn-icon' src={Like} /> </button>

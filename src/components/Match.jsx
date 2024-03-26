@@ -1,5 +1,3 @@
-import { useNavigate } from 'react-router-dom';
-import { Link } from 'react-router-dom';
 import MatchBG from '../assets/img/match-background.png';
 
 function Match({ matchedData, onClose }) {
