@@ -32,6 +32,7 @@ function Restaurants({ updateFavoriteRestaurants }) {
       const responseDiscards = await getDiscards(user.userCode);
       const { likedRestaurantIds } = responseLikes.data;
       const { discardedRestaurantIds } = responseDiscards.data;
+      console.log(responseDiscards.data)
       setLikedRestaurantIds(likedRestaurantIds);
       setDiscardedRestaurantIds(discardedRestaurantIds);
       const filteredRestaurants = responseRestaurants.data.restaurants.filter(restaurant =>
@@ -105,9 +106,10 @@ function Restaurants({ updateFavoriteRestaurants }) {
         userCode: user.userCode,
         restaurantId
       });
+      setDiscardedRestaurantIds(previous => [...previous, restaurantId]);
       goToNextRestaurant();
     } catch (error) {
-      console.error("Error discarding restaurant:", error);
+      console.error('Error discarding restaurant:', error);
     }
   };
 
