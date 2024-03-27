@@ -59,6 +59,10 @@ export const getLikes = (userCode) => {
   return axios.get(`${baseURL}/likes?userCode=${userCode}`);
 };
 
+export const getDiscards = (userCode) => {
+  return axios.get(`${baseURL}/discards?userCode=${userCode}`);
+};
+
 export const getBeen = (userCode) => {
   return axios.get(`${baseURL}/been?userCode=${userCode}`);
 };

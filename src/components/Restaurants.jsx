@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { allRestaurants, getLikes } from "../api/restaurants.api";
+import { allRestaurants, getLikes, getDiscards } from "../api/restaurants.api";
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../context/auth.context';
 import { handleLike, addFavorite, discardRestaurant, addBeen } from '../api/restaurants.api';
@@ -22,16 +22,21 @@ function Restaurants({ updateFavoriteRestaurants }) {
   const [matchedData, setMatchedData] = useState(null);
   const [showMatch, setShowMatch] = useState(false);
   const [likedRestaurantIds, setLikedRestaurantIds] = useState([]);
-  const [discardedRestaurantsIds, setdiscardedRestaurantsIds] = useState([]);
+  const [discardedRestaurantIds, setDiscardedRestaurantIds] = useState([]);
 
 
   const fetchRestaurants = async () => {
     try {
       const responseRestaurants = await allRestaurants(user.location.city, currentPage);
       const responseLikes = await getLikes(user.userCode);
-      const {likedRestaurantIds} = responseLikes.data;
+      const responseDiscards = await getDiscards(user.userCode);
+      const { likedRestaurantIds } = responseLikes.data;
+      const { discardedRestaurantIds } = responseDiscards.data;
       setLikedRestaurantIds(likedRestaurantIds);
-      const filteredRestaurants = responseRestaurants.data.restaurants.filter(restaurant => ![...likedRestaurantIds, ...discardedRestaurantsIds].includes(restaurant.restaurantId));
+      setDiscardedRestaurantIds(discardedRestaurantIds);
+      const filteredRestaurants = responseRestaurants.data.restaurants.filter(restaurant =>
+        ![...likedRestaurantIds, ...discardedRestaurantIds].includes(restaurant.restaurantId)
+      );
       setRestaurants(filteredRestaurants);
       setTotalPages(Math.ceil(responseRestaurants.data.totalCount / 1));
     } catch (error) {
@@ -64,49 +69,6 @@ function Restaurants({ updateFavoriteRestaurants }) {
     });
   };
 
-  const handleFavoriteClick = async () => {
-    try {
-      const restaurantId = restaurants[currentRestaurantIndex]._id;
-      const response = await addFavorite({
-        userCode: user.userCode,
-        restaurantId
-      });
-      if (response.data.message === 'Restaurant added to favorites successfully') {
-        updateFavoriteRestaurants();
-      }
-      goToNextRestaurant();
-    } catch (error) {
-      console.error("Error adding restaurant to favorites:", error);
-    }
-  };
-
-  const handleDiscardClick = async () => {
-    try {
-      const restaurantId = restaurants[currentRestaurantIndex]._id;
-      await discardRestaurant({
-        userCode: user.userCode,
-        restaurantId
-      });
-
-      goToNextRestaurant();
-    } catch (error) {
-      console.error("Error discarding restaurant:", error);
-    }
-  };
-
-  const handleBeenClick = async () => {
-    try {
-      const restaurantId = restaurants[currentRestaurantIndex]._id;
-      await addBeen({
-        userCode: user.userCode,
-        restaurantId
-      });
-      goToNextRestaurant();
-    } catch (error) {
-      console.error("Error marking restaurant as been:", error);
-    }
-  };
-
   const handleLikeClick = async () => {
     try {
       const restaurantId = restaurants[currentRestaurantIndex]._id;
@@ -133,6 +95,48 @@ function Restaurants({ updateFavoriteRestaurants }) {
       goToNextRestaurant();
     } catch (error) {
       console.error("Error liking restaurant:", error);
+    }
+  };
+
+  const handleDiscardClick = async () => {
+    try {
+      const restaurantId = restaurants[currentRestaurantIndex]._id;
+      await discardRestaurant({
+        userCode: user.userCode,
+        restaurantId
+      });
+      goToNextRestaurant();
+    } catch (error) {
+      console.error("Error discarding restaurant:", error);
+    }
+  };
+
+  const handleBeenClick = async () => {
+    try {
+      const restaurantId = restaurants[currentRestaurantIndex]._id;
+      await addBeen({
+        userCode: user.userCode,
+        restaurantId
+      });
+      goToNextRestaurant();
+    } catch (error) {
+      console.error("Error marking restaurant as been:", error);
+    }
+  };
+
+  const handleFavoriteClick = async () => {
+    try {
+      const restaurantId = restaurants[currentRestaurantIndex]._id;
+      const response = await addFavorite({
+        userCode: user.userCode,
+        restaurantId
+      });
+      if (response.data.message === 'Restaurant added to favorites successfully') {
+        updateFavoriteRestaurants();
+      }
+      goToNextRestaurant();
+    } catch (error) {
+      console.error("Error adding restaurant to favorites:", error);
     }
   };
 
