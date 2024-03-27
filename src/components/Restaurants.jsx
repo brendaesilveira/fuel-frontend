@@ -32,7 +32,6 @@ function Restaurants({ updateFavoriteRestaurants }) {
       const responseDiscards = await getDiscards(user.userCode);
       const { likedRestaurantIds } = responseLikes.data;
       const { discardedRestaurantIds } = responseDiscards.data;
-      console.log(responseDiscards.data)
       setLikedRestaurantIds(likedRestaurantIds);
       setDiscardedRestaurantIds(discardedRestaurantIds);
       const filteredRestaurants = responseRestaurants.data.restaurants.filter(restaurant =>
@@ -133,7 +132,8 @@ function Restaurants({ updateFavoriteRestaurants }) {
         userCode: user.userCode,
         restaurantId
       });
-      if (response.data.message === 'Restaurant added to favorites successfully') {
+      if (response.data.message === 'Restaurant added to favourites successfully') {
+        console.log(response.data.message)
         updateFavoriteRestaurants();
       }
       goToNextRestaurant();
