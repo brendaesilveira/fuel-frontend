@@ -2,6 +2,7 @@ import { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { connectUsers } from '../api/settings.api';
 import { AuthContext } from '../context/auth.context';
+import LoadingPage from '../components/Loading';
 
 function Connect() {
   const [friendCode, setFriendCode] = useState('');
@@ -50,7 +51,7 @@ function Connect() {
           {message && <p>{message}</p>}
         </div>
       ) : (
-        <p>Loading...</p>
+        <LoadingPage />
       )}
     </div>
   );

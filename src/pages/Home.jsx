@@ -10,8 +10,7 @@ const [favoriteRestaurants, setFavoriteRestaurants] = useState([]);
 
 
 const updateFavoriteRestaurants = async () => {
-  // Logic to update favorite restaurants state
-  setFavoriteRestaurants(/* updated favorite restaurants array */);
+  setFavoriteRestaurants();
 }
 
   return (

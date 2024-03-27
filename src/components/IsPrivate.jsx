@@ -1,20 +1,18 @@
 import { useContext } from "react";
 import {AuthContext} from "../context/auth.context"
 import { Navigate } from "react-router-dom";
+import LoadingPage from '../components/Loading';
 
 const IsPrivate = props => {
     const {isLoggedIn, isLoading} = useContext(AuthContext)
 
-    // if the authentication is still loading
     if (isLoading) {
-        <p>Loading...</p>
+        <LoadingPage />
     }
 
-    // if the user is not logged in
     if (!isLoggedIn) {
         return <Navigate to={'/login'} />
     } else {
-    // if the user is logged in, allow them to see the page
         return props.children
     }
 }
