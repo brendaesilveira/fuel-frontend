@@ -11,8 +11,26 @@ body, html {
   overflow-y: hidden;
 }
 
-.home-page {
+.home-page,
+.loading-page {
   background-color: #fff6ea;
+}
+.loading-page {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.loading-page img {
+  width: 30%;
+}
+.loading-link {
+  text-decoration: none;
+  color: white;
+}
+.loding-link:hover {
+  color: #ff3b01;
 }
 
 /* ---------------------------------- LEFT CONTAINER -> NAV, MENU ---------------------------------- */
@@ -271,105 +289,149 @@ textarea:focus {
 /* ---------------------------------- RIGHT CONTAINER -> RESTAURANTS ---------------------------------- */
 
 .restaurants-container {
-  position: absolute;
-  top: 50%;
+  display: flex;
+  position: fixed;
+  justify-content: center;
+  flex-direction: column;
+  top: 45%;
   right: 0;
-  transform: translateY(-50%) translateX(-60%);
-  width: 30%;
-  height: 80%;
+  transform: translateY(-50%) translateX(-40%);
+  width: 40%;
+  height: 98%;
 }
 
-.restaurant-img,
-.rest-bg {
-  position: absolute;
-  width: 90%;
-}
-
-.restaurant-img {
-  width: 75%;
-  height: 55%;
-  transform: translateY(10%) translateX(8.5%);
-}
-
-.rest-name,
-.next-bttn {
-  text-align: center;
-}
-
-.rest-name {
+.rest-image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
   position: relative;
+}
+
+.rest-bg-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 8%;
+  width: 100%;
+  height: 62%;
+}
+.rest-bg {
+  height: 95%;
+}
+.restaurant-img {
+  position: absolute;
+  top: 47%;
+  left: 49%;
+  transform: translate(-50%, -50%);
+  width: 68%;
+  height: 43%;
+}
+.rest-name {
+  width: 90%;
+  height: fit-content;
+}
+.rest-name > h3 {
   font-family: "Alfa Slab One", serif;
   color: #ff3b01;
-  font-size: 1.5rem;
-  transform: translateY(880%) translateX(-10%);
+  font-size: 1.8rem;
   letter-spacing: 2px;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
-.rest-details {
+
+.rest-details-container {
+  display: flex;
   position: absolute;
+  justify-content: flex-end;
+  flex-direction: column;
+  width: 78%;
+  height: 20%;
+  margin-top: 48%;
+  margin-left: 8%;
+  padding: 10px;
+  overflow: hidden;
+}
+
+.rest-details {
   font-family: 'Lato', serif;
   font-weight: bold;
   font-size: 0.8rem;
-  transform: translateY(1620%) translateX(50%);
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .next-bttn-container {
   display: flex;
+  position: absolute;
+  top: 45%;
   justify-content: space-between;
-  width: 120%;
-  transform: translateY(200%) translateX(-12%);
+  width: 100%;
 }
 
 .next-button {
-  width: 10%;
+  width: 8%;
   height: 5%;
 }
 
 /* ---------------------------------- RIGHT CONTAINER -> BUTTONS ---------------------------------- */
 
-.activity-bttn-container{
+.activity-bttn-container {
   display: flex;
-  align-items: center;
-  width: 90%;
-  transform: translateY(400%) translateX(7%);
+  justify-content: center;
+  width: 100%;
+  position: absolute;
+  bottom: 5px;
 }
 
 .activity-bttn-container button {
-margin: 10px;
+  margin: 0 20px;
 }
 .next-button,
 .like-button,
 .discard-button,
-.refresh-button,
 .fav-button,
-.refresh-button,
 .been-button {
   background-color: white;
   border-radius: 50%;
   cursor: pointer;
   border: none;
-}
-
-.like-button,
-.discard-button {
-  width: 15%;
-  height: 10%;
-}
-
-.refresh-button,
-.fav-button,
-.refresh-button,
-.been-button {
   width: 10%;
-  height: 10%;
-  display: flex;
-  align-content:flex-end;
+  height: 5%;
+}
+
+.discard-button::after,
+.fav-button::after,
+.been-button::after,
+.like-button::after {
+  font-family: "Lato", sans-serif;
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 100%;
+  transform: translateX(-60%);
+  background-color: #ff3b01;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 5px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  padding: 0.5%;
+}
+
+.discard-button:hover::after,
+.fav-button:hover::after,
+.been-button:hover::after,
+.like-button:hover::after {
+  opacity: 1;
 }
 
 .like-button,
 .discard-button,
 .refresh-button,
 .fav-button,
-.refresh-button,
 .been-button {
   margin: 0;
 }

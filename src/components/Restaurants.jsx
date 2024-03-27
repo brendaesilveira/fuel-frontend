@@ -11,6 +11,7 @@ import Like from '../assets/img/like-btn.png';
 import Discard from '../assets/img/discard-btn.png';
 import Favourite from '../assets/img/fav-btn.png';
 import Been from '../assets/img/been-btn.png';
+import LoadingPage from '../components/Loading';
 
 function Restaurants({ updateFavoriteRestaurants }) {
   const { isLoggedIn, user } = useContext(AuthContext);
@@ -143,24 +144,52 @@ function Restaurants({ updateFavoriteRestaurants }) {
           {!matchedData && (
             <>
               {restaurants.length > 0 ? (
+
                 <div className='restaurants-container' key={restaurants[currentRestaurantIndex]._id}>
+
+                  <div className='rest-image-container'>
+                  <div className='rest-bg-container'>
                   <img className='rest-bg' src={RestBg} alt="restaurants-background" />
+                  </div>
                   <img className='restaurant-img' src={restaurants[currentRestaurantIndex].image_url} alt="restaurant-picture" />
-                  <h3 className='rest-name'>{restaurants[currentRestaurantIndex].name}</h3>
+
+                  <div className='rest-details-container'>
+
+                  <div className='rest-name'>
+                  <h3>{restaurants[currentRestaurantIndex].name}</h3>
+                  </div>
                   <p className='rest-details'>{restaurants[currentRestaurantIndex].categories[0].title}  <span className="dot">•</span> {restaurants[currentRestaurantIndex].price} <span className="dot">•</span> {restaurants[currentRestaurantIndex].rating}</p>
+                  </div>
+                  </div>
+
+
                   <div className='next-bttn-container'>
                     <button className='next-button' onClick={goToPreviousRestaurant} disabled={currentRestaurantIndex === 0}><img className='bttn-icon' src={LeftArrow} /> </button>
                     <button className='next-button' onClick={goToNextRestaurant} disabled={currentRestaurantIndex === restaurants.length - 1}><img className='bttn-icon' src={RightArrow} /></button>
                   </div>
+
                   <div className='activity-bttn-container'>
-                    <button className='discard-button' onClick={handleDiscardClick}><img className='bttn-icon' src={Discard} /> </button>
-                    <button className='fav-button' onClick={handleFavoriteClick}><img className='bttn-icon' src={Favourite} /> </button>
-                    <button className='been-button' onClick={handleBeenClick}><img className='bttn-icon' src={Been} /> </button>
-                    <button className='like-button' onClick={handleLikeClick}><img className='bttn-icon' src={Like} /> </button>
+
+                  <button className='discard-button'
+                  data-tooltip="Discard Restaurant"
+                  onClick={handleDiscardClick}><img className='bttn-icon' src={Discard} /> </button>
+
+                  <button className='fav-button'
+                  data-tooltip="Add to Favourites"
+                  onClick={handleFavoriteClick}><img className='bttn-icon' src={Favourite} /> </button>
+
+                    <button className='been-button'
+                    data-tooltip="Mark as Been"
+                    onClick={handleBeenClick}><img className='bttn-icon' src={Been} /> </button>
+
+                    <button className='like-button'
+                    data-tooltip="Add to Likes"
+                    onClick={handleLikeClick}><img className='bttn-icon' src={Like} /> </button>
                   </div>
+
                 </div>
               ) : (
-                  <p>No restaurants found</p>
+                  <LoadingPage />
                 )}
             </>
           )}

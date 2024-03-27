@@ -16,6 +16,7 @@ import IsPrivate from "./components/IsPrivate";
 import IsAnon from "./components/IsAnon";
 import IsSetupIncompleted from "./components/IsSetupIncompleted";
 import Settings from './components/Settings';
+import Loading from './components/Loading';
 
 // Pages
 import Home from "./pages/Home";
