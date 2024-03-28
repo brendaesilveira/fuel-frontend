@@ -23,7 +23,8 @@ function Restaurants({ updateFavoriteRestaurants }) {
   const [showMatch, setShowMatch] = useState(false);
   const [likedRestaurantIds, setLikedRestaurantIds] = useState([]);
   const [discardedRestaurantIds, setDiscardedRestaurantIds] = useState([]);
-
+  const [favoriteDisabledIds, setFavoriteDisabledIds] = useState([]);
+  const [beenDisabledIds, setBeenDisabledIds] = useState([]);
 
   const fetchRestaurants = async () => {
     try {
@@ -47,13 +48,64 @@ function Restaurants({ updateFavoriteRestaurants }) {
   const handleMatchClose = () => {
     setShowMatch(false);
     fetchRestaurants();
-    setMatchedData(null)
+    setMatchedData(null);
   };
 
   useEffect(() => {
     user && fetchRestaurants();
   }, [user, currentPage]);
 
+  useEffect(() => {
+    const storedFavorites = JSON.parse(localStorage.getItem('favoriteRestaurants')) || [];
+    setFavoriteDisabledIds(storedFavorites);
+  }, []);
+
+  const saveFavoriteToStorage = (restaurantId) => {
+    const updatedFavorites = [...favoriteDisabledIds, restaurantId];
+    localStorage.setItem('favoriteRestaurants', JSON.stringify(updatedFavorites));
+    setFavoriteDisabledIds(updatedFavorites);
+  };
+  useEffect(() => {
+    const storedBeen = JSON.parse(localStorage.getItem('beenRestaurants')) || [];
+    setBeenDisabledIds(storedBeen);
+  }, []);
+
+  const saveBeenToStorage = (restaurantId) => {
+    const updatedBeen = [...beenDisabledIds, restaurantId];
+    localStorage.setItem('beenRestaurants', JSON.stringify(updatedBeen));
+    setBeenDisabledIds(updatedBeen);
+  };
+
+  const handleFavoriteClick = async () => {
+    try {
+      const restaurantId = restaurants[currentRestaurantIndex]._id;
+      const response = await addFavorite({
+        userCode: user.userCode,
+        restaurantId
+      });
+      if (response.data.message === 'Restaurant added to favourites successfully') {
+        updateFavoriteRestaurants();
+        saveFavoriteToStorage(restaurantId);
+      } else if (response.data.message === 'Restaurant removed from favourites successfully') {
+        updateFavoriteRestaurants();
+        removeFavoriteFromStorage(restaurantId);
+      }
+    } catch (error) {
+      console.error("Error adding/removing restaurant to/from favorites:", error);
+    }
+  };
+
+  const removeFavoriteFromStorage = (restaurantId) => {
+    setFavoriteDisabledIds(prevFavorites => {
+      const updatedFavorites = prevFavorites.filter(id => id !== restaurantId);
+      localStorage.setItem('favoriteRestaurants', JSON.stringify(updatedFavorites));
+      return updatedFavorites;
+    });
+  };
+
+  useEffect(() => {
+    localStorage.setItem('favoriteRestaurants', JSON.stringify(favoriteDisabledIds));
+  }, [favoriteDisabledIds]);
 
   const goToNextRestaurant = () => {
     setCurrentRestaurantIndex((prevIndex) => {
@@ -76,7 +128,6 @@ function Restaurants({ updateFavoriteRestaurants }) {
         userCode: user.userCode,
         restaurantId
       });
-      console.log(response)
       if (response.data.message === 'Restaurant liked and match created successfully') {
         setMatchedData({
           friendName: user.connections[0].userName,
@@ -119,28 +170,12 @@ function Restaurants({ updateFavoriteRestaurants }) {
         userCode: user.userCode,
         restaurantId
       });
-      goToNextRestaurant();
+      saveBeenToStorage(restaurantId)
     } catch (error) {
       console.error("Error marking restaurant as been:", error);
     }
   };
 
-  const handleFavoriteClick = async () => {
-    try {
-      const restaurantId = restaurants[currentRestaurantIndex]._id;
-      const response = await addFavorite({
-        userCode: user.userCode,
-        restaurantId
-      });
-      if (response.data.message === 'Restaurant added to favourites successfully') {
-        console.log(response.data.message)
-        updateFavoriteRestaurants();
-      }
-      goToNextRestaurant();
-    } catch (error) {
-      console.error("Error adding restaurant to favorites:", error);
-    }
-  };
 
   return (
     <div>
@@ -154,18 +189,18 @@ function Restaurants({ updateFavoriteRestaurants }) {
                 <div className='restaurants-container' key={restaurants[currentRestaurantIndex]._id}>
 
                   <div className='rest-image-container'>
-                  <div className='rest-bg-container'>
-                  <img className='rest-bg' src={RestBg} alt="restaurants-background" />
-                  </div>
-                  <img className='restaurant-img' src={restaurants[currentRestaurantIndex].image_url} alt="restaurant-picture" />
+                    <div className='rest-bg-container'>
+                      <img className='rest-bg' src={RestBg} alt="restaurants-background" />
+                    </div>
+                    <img className='restaurant-img' src={restaurants[currentRestaurantIndex].image_url} alt="restaurant-picture" />
 
-                  <div className='rest-details-container'>
+                    <div className='rest-details-container'>
 
-                  <div className='rest-name'>
-                  <h3>{restaurants[currentRestaurantIndex].name}</h3>
-                  </div>
-                  <p className='rest-details'>{restaurants[currentRestaurantIndex].categories[0].title}  <span className="dot">•</span> {restaurants[currentRestaurantIndex].price} <span className="dot">•</span> {restaurants[currentRestaurantIndex].rating}</p>
-                  </div>
+                      <div className='rest-name'>
+                        <h3>{restaurants[currentRestaurantIndex].name}</h3>
+                      </div>
+                      <p className='rest-details'>{restaurants[currentRestaurantIndex].categories[0].title}  <span className="dot">•</span> {restaurants[currentRestaurantIndex].price} <span className="dot">•</span> {restaurants[currentRestaurantIndex].rating}</p>
+                    </div>
                   </div>
 
 
@@ -176,21 +211,22 @@ function Restaurants({ updateFavoriteRestaurants }) {
 
                   <div className='activity-bttn-container'>
 
-                  <button className='discard-button'
-                  data-tooltip="Discard Restaurant"
-                  onClick={handleDiscardClick}><img className='bttn-icon' src={Discard} /> </button>
+                    <button className='discard-button'
+                      data-tooltip="Discard Restaurant"
+                      onClick={handleDiscardClick}><img className='bttn-icon' src={Discard} /> </button>
 
-                  <button className='fav-button'
-                  data-tooltip="Add to Favourites"
-                  onClick={handleFavoriteClick}><img className='bttn-icon' src={Favourite} /> </button>
+                    <button className={`fav-button ${favoriteDisabledIds.includes(restaurants[currentRestaurantIndex]._id) ? 'disabled' : ''}`}
+                      data-tooltip="Add to Favourites"
+                      onClick={handleFavoriteClick} disabled={favoriteDisabledIds.includes(restaurants[currentRestaurantIndex]._id)}><img className='bttn-icon' src={Favourite} /> </button>
 
-                    <button className='been-button'
-                    data-tooltip="Mark as Been"
-                    onClick={handleBeenClick}><img className='bttn-icon' src={Been} /> </button>
+                    <button className={`been-button ${beenDisabledIds.includes(restaurants[currentRestaurantIndex]._id) ? 'disabled' : ''}`}
+                      data-tooltip="Mark as Been"
+                      onClick={handleBeenClick} disabled={beenDisabledIds.includes(restaurants[currentRestaurantIndex]._id)}><img className='bttn-icon' src={Been} /> </button>
+
 
                     <button className='like-button'
-                    data-tooltip="Add to Likes"
-                    onClick={handleLikeClick}><img className='bttn-icon' src={Like} /> </button>
+                      data-tooltip="Add to Likes"
+                      onClick={handleLikeClick}><img className='bttn-icon' src={Like} /> </button>
                   </div>
 
                 </div>
