@@ -192,7 +192,12 @@ function Restaurants({ updateFavoriteRestaurants }) {
                     <div className='rest-bg-container'>
                       <img className='rest-bg' src={RestBg} alt="restaurants-background" />
                     </div>
+
+                      <Link
+                      target='_blank'
+                      to={restaurants[currentRestaurantIndex].rest_url}>
                     <img className='restaurant-img' src={restaurants[currentRestaurantIndex].image_url} alt="restaurant-picture" />
+                      </Link>
 
                     <div className='rest-details-container'>
 

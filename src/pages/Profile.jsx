@@ -63,7 +63,7 @@ function Profile() {
             <img className='profile-profileImg' src={defaultProfileImg} alt="profile-img" />
           )}
           <p className='profile-username'>{user.name}</p>
-          <p className='profile-userlocation'>{user.location.city},{user.location.country}</p>
+          <p className='profile-userlocation'>{user.location.city}, {user.location.country}</p>
           </div>
           <div className="profile-tab-content-wrapper">
           <div className="profile-tab-container">
