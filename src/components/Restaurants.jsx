@@ -367,34 +367,53 @@ function Restaurants({ updateFavoriteRestaurants }) {
     });
   };
 
-    const handleLikeClick = async () => {
+  const handleLikeClick = async () => {
     try {
-      const restaurantId = restaurants[currentRestaurantIndex]._id;
+      const restaurantId = restaurants[currentRestaurantIndex].restaurantId;
+      console.log("Liked restaurantId:", restaurantId);
+
       const response = await handleLike({
         userCode: user.userCode,
         restaurantId
       });
+      console.log("Like response:", response.data);
+
       if (response.data.message === 'Restaurant liked and match created successfully') {
-        setMatchedData({
-          friendName: user.connections[0].userName,
-          restaurantName: restaurants[currentRestaurantIndex].name,
-          restaurantImage: restaurants[currentRestaurantIndex].image_url
-        });
-        setShowMatch(true);
+        const friendLikesResponse = await getLikes(user.connections[0].userCode);
+        console.log("Friend's likes response:", friendLikesResponse.data);
+
+        const friendLikedRestaurantIds = friendLikesResponse.data.likedRestaurantIds;
+        console.log("Friend's liked restaurantIds:", friendLikedRestaurantIds);
+
+        if (friendLikedRestaurantIds.includes(restaurantId)) {
+          console.log("Match found!");
+          setMatchedData({
+            friendName: user.connections[0].userName,
+            restaurantName: restaurants[currentRestaurantIndex].name,
+            restaurantImage: restaurants[currentRestaurantIndex].image_url
+          });
+          setShowMatch(true);
+        } else {
+          console.log("No match found.");
+        }
       } else if (response.data.message === 'Match already exists for this restaurant') {
-        setMatchedData({
-          friendName: user.connections[0].userName,
-          restaurantName: restaurants[currentRestaurantIndex].name,
-          restaurantImage: restaurants[currentRestaurantIndex].image_url
-        });
-        setShowMatch(true);
+        console.log("Match already exists for this restaurant.");
+        const friendLikesResponse = await getLikes(user.connections[0].userCode);
+        const friendLikedRestaurantIds = friendLikesResponse.data.likedRestaurantIds;
+        if (friendLikedRestaurantIds.includes(restaurantId)) {
+          setMatchedData({
+            friendName: user.connections[0].userName,
+            restaurantName: restaurants[currentRestaurantIndex].name,
+            restaurantImage: restaurants[currentRestaurantIndex].image_url
+          });
+          setShowMatch(true);
+        }
       }
       goToNextRestaurant();
     } catch (error) {
       console.error("Error liking restaurant:", error);
     }
   };
-
 
   const handleMatchClose = () => {
     setShowMatch(false);
