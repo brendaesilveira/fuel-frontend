@@ -367,7 +367,7 @@ function Restaurants({ updateFavoriteRestaurants }) {
     });
   };
 
-  const handleLikeClick = async () => {
+    const handleLikeClick = async () => {
     try {
       const restaurantId = restaurants[currentRestaurantIndex]._id;
       const response = await handleLike({
@@ -389,10 +389,12 @@ function Restaurants({ updateFavoriteRestaurants }) {
         });
         setShowMatch(true);
       }
+      goToNextRestaurant();
     } catch (error) {
       console.error("Error liking restaurant:", error);
     }
   };
+
 
   const handleMatchClose = () => {
     setShowMatch(false);
