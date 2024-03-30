@@ -335,7 +335,7 @@ textarea:focus {
 .rest-name > h3 {
   font-family: "Alfa Slab One", serif;
   color: #ff3b01;
-  font-size: 1.8rem;
+  font-size: 2rem;
   letter-spacing: 2px;
   margin: 0;
   white-space: nowrap;
@@ -514,14 +514,14 @@ textarea:focus {
   color: #ff3b01;
 }
 
-@media only screen and (min-width: 1400px) and (min-height: 900px) {
+@media only screen and (min-width: 1920px) and (min-height: 934px) {
   .home-page,
   .loading-page {
-    width: 1440px;
-    height: 900px;
+    width: 1920px;
+    height: 934px;
   }
   .left-container {
-    width: 35%;
+    width: 27%;
   }
   .Navbar {
     padding: 1rem;
@@ -542,7 +542,6 @@ textarea:focus {
   .menu {
   padding: 0 20px;
 }
-
 .menu h3 {
   margin-right: 20px;
 }
@@ -582,20 +581,20 @@ textarea:focus {
 }
 
 .rest-bg-container {
-  height: 66%;
+  height: 80%;
 }
 .rest-bg {
   height: 98%;
 }
 .rest-name {
-  width: 93%;
+  width: 100%;
 }
 .rest-details-container {
   margin-top: 52%;
 }
 
 .rest-details {
-  font-size: 1rem;
+  font-size: 1.2rem;
   margin-top: 8px;
 }
 
@@ -608,7 +607,7 @@ textarea:focus {
   width: 109%;
 }
 .activity-bttn-container {
-  bottom: 80px;
+  bottom: 30px;
 }
 .match-bg {
   position: absolute;

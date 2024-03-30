@@ -124,7 +124,7 @@
 }
 
 
-@media only screen and (min-width: 1400px) and (min-height: 900px) {
+@media only screen and (min-width: 1920px) and (min-height: 934px) {
     .profile-nav {
         padding: 1rem;
     }
@@ -148,7 +148,7 @@
     font-size: 1.8rem;
   }
   .tab-content-container {
-    max-width: 108vh;
+    max-width: 130vh;
 }
 .restaurants-list {
     max-height: 90vh;
