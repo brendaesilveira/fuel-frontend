@@ -88,3 +88,30 @@ justify-content: center;
 .connect-input:focus {
 outline: none;
 }
+
+@media only screen and (min-width: 1400px) and (min-height: 900px) {
+
+.connect-page {
+    min-height: 110vh;
+}
+.connect-text {
+    font-size: 2rem;
+}
+.connect-link {
+    font-size: 1rem;
+}
+.start-btn {
+    font-size: 1.7rem;
+    margin: 8% 0 5% 0;
+}
+.skip-btn {
+    font-size: 1rem;
+}
+.user-code {
+    font-size: 4rem;
+}
+.connect-input {
+  font-size: 1rem;
+}
+
+}

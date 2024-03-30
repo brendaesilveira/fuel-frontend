@@ -10,6 +10,7 @@
     width: auto;
     background-color: #fff6ea;
 }
+
 /* ------------------------------------------ PROFILE NAV ------------------------------------------ */
 .profile-nav {
     display: flex;
@@ -28,6 +29,7 @@
     align-self: center;
     width: 4%;
 }
+
 /* ------------------------------------------ LEFT - PROFILE DETAILS ------------------------------------------ */
 .profile-details-container {
     display: flex;
@@ -120,3 +122,35 @@
 ::-webkit-scrollbar-thumb:hover {
     background: #ff721b;
 }
+
+
+@media only screen and (min-width: 1400px) and (min-height: 900px) {
+    .profile-nav {
+        padding: 1rem;
+    }
+    .profile-nav-icon {
+        width: 5%;
+    }
+.profile-profileImg {
+    width: 70%;
+}
+.profile-username {
+    font-size: 2.3rem;
+    font-weight: bold;
+}
+.profile-tab-content-wrapper {
+    width: 90%;
+}
+.profile-tab-container {
+    height: 25vh;
+}
+.profile-page h3 {
+    font-size: 1.8rem;
+  }
+  .tab-content-container {
+    max-width: 108vh;
+}
+.restaurants-list {
+    max-height: 90vh;
+}
+    }

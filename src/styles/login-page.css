@@ -91,3 +91,22 @@ textarea:focus {
   font-weight: bold;
   color: #ff3b01;
 }
+
+@media only screen and (min-width: 1400px) and (min-height: 900px) {
+
+  .logo-container img {
+    width: 50%;
+  }
+  .login-form-container {
+    height: 55vh;
+  }
+
+  .login-input,
+  textarea {
+    font-size: 1.5rem;
+  }
+
+  .login-button {
+    margin: 10% auto 4% auto;
+  }
+}

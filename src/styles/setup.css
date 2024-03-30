@@ -126,3 +126,30 @@
     text-decoration: underline;
     margin: 1%;
 }
+
+@media only screen and (min-width: 1400px) and (min-height: 900px) {
+
+    .setup-form {
+        width: 60%;
+    }
+    .location-text,
+    .image-text {
+        font-size: 2rem;
+    }
+    .optional {
+        font-size: 0.7rem;
+    }
+    .select-container {
+        margin: 5% 0;
+    }
+
+    .upload-icon {
+        width: 120px;
+        margin-top: 50%;
+    }
+
+    .add-button {
+        margin-top: 7%;
+        font-size: 1.8rem;
+    }
+}

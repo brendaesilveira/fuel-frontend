@@ -77,3 +77,28 @@
     font-size: 0.8rem;
     color: black;
   }
+
+  @media only screen and (min-width: 1400px) and (min-height: 900px) {
+
+    .logo-container img {
+      width: 50%;
+    }
+
+    .signup-form {
+      height: 55vh;
+    }
+
+    .signup-label {
+      font-size: 1.5rem;
+    }
+
+    .signup-input,
+    textarea {
+      font-size: 1.5rem;
+      padding: 2% 6% 2% 2%;
+    }
+
+    .signup-button {
+      margin: 10% 0 3% 0;
+    }
+  }
